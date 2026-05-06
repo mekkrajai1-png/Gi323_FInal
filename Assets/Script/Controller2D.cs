@@ -1,14 +1,10 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
+using Unity.Netcode;
 
-public class Controller2D : MonoBehaviour
+public class Controller2D : NetworkBehaviour
 {
-    public float moveSpeed = 8f;
-    public float jumpForce = 12f;
-
-    public Transform groundCheck;
-    public float groundCheckRadius = 0.2f;
-    public LayerMask groundLayer;
+    public float moveStep = 2.0f;
+    public float jumpForce = 5f;
 
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -20,22 +16,39 @@ public class Controller2D : MonoBehaviour
 
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
-        // ใช้ New Input System
-        if ((Keyboard.current.spaceKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame) && isGrounded)
+        
+        if (!IsOwner) return;
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            Jump();
+            rb.MovePosition(rb.position + new Vector2(moveStep, 0));
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         }
     }
 
-    void FixedUpdate()
+    void OnCollisionStay2D(Collision2D collision)
     {
-        rb.linearVelocity = new Vector2(moveSpeed, rb.linearVelocity.y);
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            foreach (ContactPoint2D contact in collision.contacts)
+            {
+                if (contact.normal.y > 0.5f)
+                {
+                    isGrounded = true;
+                    return;
+                }
+            }
+        }
     }
 
-    void Jump()
+    void OnCollisionExit2D(Collision2D collision)
     {
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
     }
 }
