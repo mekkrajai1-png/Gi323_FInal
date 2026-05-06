@@ -1090,7 +1090,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7e8e81fba412084780deb959d6611cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ConnectionButtons
-  sceneToLoad: Scence Game
 --- !u!1 &1967190367
 GameObject:
   m_ObjectHideFlags: 0

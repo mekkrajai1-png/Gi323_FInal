@@ -5,6 +5,7 @@ public class Controller2D : NetworkBehaviour
 {
     public float moveStep = 2.0f;
     public float jumpForce = 5f;
+    public bool canMove = false;
 
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -16,8 +17,7 @@ public class Controller2D : NetworkBehaviour
 
     void Update()
     {
-        
-        if (!IsOwner) return;
+        if (!IsOwner || !canMove) return;
         if (Input.GetKeyDown(KeyCode.W))
         {
             rb.MovePosition(rb.position + new Vector2(moveStep, 0));

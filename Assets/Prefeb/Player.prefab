@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6003336618800831305}
   - component: {fileID: 6257416808341472264}
   - component: {fileID: 5355953288095321267}
+  - component: {fileID: 4626828138378892400}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -104,6 +105,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &4626828138378892400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109985220417001915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7e8e81fba412084780deb959d6611cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ConnectionButtons
 --- !u!1 &1354695338231918254
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +431,7 @@ Transform:
   m_GameObject: {fileID: 5082433098691244701}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.644, z: 0}
+  m_LocalPosition: {x: 0, y: -0.667, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -458,7 +471,7 @@ Transform:
   m_GameObject: {fileID: 8007326161181777588}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.12, y: -1.8799999, z: 0}
+  m_LocalPosition: {x: -8.12, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -513,7 +526,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 8
   m_MaskInteraction: 0
   m_Sprite: {fileID: 1420849620681163181, guid: 325987b0623b95944948395469d58f2d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -586,7 +599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Controller2D
   ShowTopMostFoldoutHeaderGroup: 1
   moveStep: 1
-  jumpForce: 3
+  jumpForce: 6
 --- !u!70 &4707421073684535871
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

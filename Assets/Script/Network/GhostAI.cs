@@ -8,8 +8,11 @@ public class GhostAI : MonoBehaviour
     private Transform target;
     private float lastDamageTime;
 
+    public bool gameStarted = false;
+
     void Update()
     {
+        if (!gameStarted) return;
         FindClosestPlayer();
 
         if (target != null)
@@ -33,7 +36,7 @@ public class GhostAI : MonoBehaviour
         {
             HeartHealth hp = p.GetComponent<HeartHealth>();
 
-            
+
             if (hp == null || !hp.IsAlive())
                 continue;
 
@@ -51,6 +54,8 @@ public class GhostAI : MonoBehaviour
 
     void OnCollisionStay2D(Collision2D collision)
     {
+        if (!gameStarted) return;
+
         if (!Unity.Netcode.NetworkManager.Singleton.IsServer) return;
 
         if (collision.gameObject.CompareTag("Player"))

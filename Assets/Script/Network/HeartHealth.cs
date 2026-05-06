@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
+using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 public class HeartHealth : NetworkBehaviour
 {
@@ -63,7 +66,6 @@ public class HeartHealth : NetworkBehaviour
 
     void Die()
     {
-        
         GetComponent<Controller2D>().enabled = false;
 
         Collider2D col = GetComponent<Collider2D>();
@@ -72,17 +74,26 @@ public class HeartHealth : NetworkBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb)
         {
-            rb.linearVelocity = Vector2.zero;
+            rb.velocity = Vector2.zero; 
             rb.bodyType = RigidbodyType2D.Static;
         }
 
         GetComponent<SpriteRenderer>().color = Color.gray;
 
-        
         if (IsOwner && gameOverUI != null)
         {
             gameOverUI.SetActive(true);
+
+            
+            StartCoroutine(ReturnToMenuAfterDelay());
         }
+    }
+    IEnumerator ReturnToMenuAfterDelay()
+    {
+        yield return new WaitForSeconds(5f);
+
+       
+        SceneManager.LoadScene("Main Menu");
     }
 
     void HideHearts()

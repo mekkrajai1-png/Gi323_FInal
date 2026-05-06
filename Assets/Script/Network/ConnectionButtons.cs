@@ -4,15 +4,14 @@ using UnityEngine.SceneManagement;
 
 public class ConnectionButtons : MonoBehaviour
 {
-    [Header("Scene Settings")]
-    public string sceneToLoad; 
+     
 
     public void StartHost()
     {
         NetworkManager.Singleton.StartHost();
 
         NetworkManager.Singleton.SceneManager.LoadScene(
-            sceneToLoad,
+            "MapLayout",
             LoadSceneMode.Single
         );
     }
